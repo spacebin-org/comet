@@ -28,13 +28,17 @@ For more information and the history of Pastebin see Wikipedia's [article on the
 ```sh
 $ comet --help
 comet 0.1.0
-Usage: comet [--raw] [INPUT [INPUT ...]]
+Usage: comet [--raw] [--copy] [--instance INSTANCE] [--resulturl RESULTURL] [INPUT [INPUT ...]]
 
 Positional arguments:
   INPUT                  the file to upload
 
 Options:
   --raw, -r              whether to return plain-text versions
+  --copy, -c             copy the url to clipboard after upload
+  --instance INSTANCE    the spacebin instance [default: https://spaceb.in, env: COMET_INSTANCE]
+  --resulturl RESULTURL
+                         the base url for the response [default: https://spaceb.in, env: COMET_RESULT_URL]
   --help, -h             display this help and exit
   --version              display version and exit
 ```
