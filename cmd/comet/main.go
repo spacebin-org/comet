@@ -26,11 +26,9 @@ import (
 	"path/filepath"
 
 	"github.com/GreatGodApollo/gospacebin"
-	arg "github.com/alexflint/go-arg"
+	"github.com/alexflint/go-arg"
 	"github.com/spacebin-org/comet/internal/lib"
 )
-
-var spacebin = gospacebin.NewClient("https://spaceb.in")
 
 type arguments struct {
 	Input     []string `arg:"positional" help:"the file to upload"`
@@ -40,6 +38,12 @@ type arguments struct {
 	ResultURL string   `arg:"env:COMET_RESULT_URL" help:"the base url for the response" default:"https://spaceb.in"`
 }
 
+var args arguments
+
+func init() {
+	arg.MustParse(&args)
+}
+
 func (arguments) Version() string {
 	// @todo Add license information to this message
 
@@ -47,9 +51,10 @@ func (arguments) Version() string {
 }
 
 func main() {
-	var args arguments
-
-	arg.MustParse(&args)
+	spacebin := &lib.Spacebin{
+		InstanceURL: args.Instance,
+		ResultURL:   args.ResultURL,
+	}
 
 	if lib.IsInputFromPipe() {
 		reader := bufio.NewReader(os.Stdin)
@@ -65,9 +70,16 @@ func main() {
 			output = append(output, input)
 		}
 
-		for j := 0; j < len(output); j++ {
-			fmt.Printf("%c", output[j])
+		idString, err := spacebin.Upload(&gospacebin.CreateDocumentOpts{
+			Content:   lib.RunesToString(output),
+			Extension: "txt",
+		})
+
+		if err != nil {
+			log.Fatalln(err)
 		}
+
+		fmt.Println(idString)
 	} else {
 		for _, file := range args.Input {
 			file, err := filepath.Abs(file)
@@ -83,7 +95,7 @@ func main() {
 					log.Fatalln(err)
 				}
 
-				document, err := spacebin.CreateDocument(&gospacebin.CreateDocumentOpts{
+				idString, err := spacebin.Upload(&gospacebin.CreateDocumentOpts{
 					Content:   string(content),
 					Extension: lib.Extensions[filepath.Ext(file)],
 				})
@@ -92,7 +104,7 @@ func main() {
 					log.Fatalln(err)
 				}
 
-				fmt.Println(document.ID)
+				fmt.Println(idString)
 			}
 		}
 	}
