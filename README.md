@@ -1,7 +1,7 @@
 <p align="center">
   <img
     width="800"
-    src="https://github.com/spacebin-org/wiki/blob/master/assets/spacebin-text-logo/Spacein%20Text%402x.png?raw=true"
+    src="https://github.com/spacebin-org/wiki/blob/master/assets/spacebin-text-logo/github-banner.png?raw=true"
     alt="spacebin - pastebin server focused stability and maintainability"
   />
 </p>
@@ -9,7 +9,7 @@
 > **☄️ Comet is a fast and simple CLI client for Spacebin.**
 > \
 > \
-> [**🌎 View Live**](https://github.com/spacebin-org/comet/releases) | [**🚀 More Information and Documentation**](https://docs.spaceb.in)
+> [**↘📲 Download**](https://github.com/spacebin-org/comet/releases) | [**🚀 More Information and Documentation**](https://docs.spaceb.in)
 > 
 ---
 
@@ -47,12 +47,12 @@ Options:
 
 ## 👥 Contributors
 
-Comet development is lead by Luke Whrit, other team members, and other contributors from the open source community.
+Comet development is lead by Luke Whrit, other team members, and various contributors from the open source community.
 
 Here's a list of notable contributors to Comet:
 
 * [Luke Whrit <lukewhrit@pm.me>](https://github.com/lukewhrit) - Lead developer and maintainer.
 
-## License 
+## 📑 License and Copyright 
 
 Comet is licensed under the Apache 2.0 license. A copy of this license can be found within the [`LICENSE`](LICENSE) file.
